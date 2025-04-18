@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ctm-blue: #1B3C4A;    /* Bleu marine du logo */
+  --ctm-orange: #E4A853;  /* Orange/ocre du logo */
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply font-sans text-gray-900 bg-gray-50;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-2 rounded-lg font-semibold transition duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-dark;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .text-primary {
+    color: var(--ctm-blue);
+  }
+
+  .text-secondary {
+    color: var(--ctm-orange);
+  }
+
+  .bg-primary {
+    background-color: var(--ctm-blue);
+  }
+
+  .bg-secondary {
+    background-color: var(--ctm-orange);
+  }
+
+  .border-primary {
+    border-color: var(--ctm-blue);
+  }
+
+  .border-secondary {
+    border-color: var(--ctm-orange);
+  }
+
+  .hover\:bg-primary:hover {
+    background-color: var(--ctm-blue);
+  }
+
+  .hover\:bg-secondary:hover {
+    background-color: var(--ctm-orange);
+  }
+}
+
+/* Custom animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
