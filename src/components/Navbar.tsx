@@ -8,8 +8,6 @@ const Navbar: React.FC = () => {
 
   const navigation = [
     { name: 'Accueil', href: '/' },
-    { name: 'Tableau de bord', href: '/dashboard' },
-    { name: 'Démarches en ligne', href: '/demarches' },
     { name: 'Services', href: '/services' },
     { name: 'À propos', href: '/about' },
     { name: 'Contact', href: '/contact' },
@@ -22,10 +20,9 @@ const Navbar: React.FC = () => {
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
-                className="h-16 w-auto py-2"
-                src="/logo-ctm.svg"
+                className="h-14 w-auto"
+                src="/images/logo.png"
                 alt="Logo Collectivité Territoriale de Martinique"
-                style={{ maxWidth: '300px' }}
               />
             </Link>
           </div>
