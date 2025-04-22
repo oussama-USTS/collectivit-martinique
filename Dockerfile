@@ -54,8 +54,11 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Create directory for static files if it doesn't exist
 RUN mkdir -p /usr/share/nginx/html/static && \
+    mkdir -p /var/log/nginx && \
     chown -R nginx:nginx /usr/share/nginx/html && \
-    chmod -R 755 /usr/share/nginx/html
+    chown -R nginx:nginx /var/log/nginx && \
+    chmod -R 755 /usr/share/nginx/html && \
+    chmod -R 755 /var/log/nginx
 
 # Expose port 80
 EXPOSE 80
