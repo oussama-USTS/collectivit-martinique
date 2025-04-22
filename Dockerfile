@@ -20,7 +20,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 
 # Build stage
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -29,8 +29,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies including dev dependencies and missing packages
-RUN npm install -g npm@latest && \
-    npm install postcss-preset-env @babel/plugin-transform-private-property-in-object @babel/plugin-transform-class-properties @babel/plugin-transform-nullish-coalescing-operator @babel/plugin-transform-numeric-separator @babel/plugin-transform-optional-chaining @babel/plugin-transform-private-methods && \
+RUN npm install postcss-preset-env @babel/plugin-transform-private-property-in-object @babel/plugin-transform-class-properties @babel/plugin-transform-nullish-coalescing-operator @babel/plugin-transform-numeric-separator @babel/plugin-transform-optional-chaining @babel/plugin-transform-private-methods && \
     npm ci
 
 # Copy source code
