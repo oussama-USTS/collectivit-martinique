@@ -28,13 +28,20 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies including dev dependencies and missing packages
+RUN npm install -g npm@latest && \
+    npm install postcss-preset-env @babel/plugin-transform-private-property-in-object @babel/plugin-transform-class-properties @babel/plugin-transform-nullish-coalescing-operator @babel/plugin-transform-numeric-separator @babel/plugin-transform-optional-chaining @babel/plugin-transform-private-methods && \
+    npm ci
 
 # Copy source code
 COPY . .
 
-# Build the app
+# Create images directory and copy grid.svg
+RUN mkdir -p public/images && \
+    touch public/images/grid.svg
+
+# Build the app with increased memory allocation
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
 # Production stage

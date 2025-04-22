@@ -1,21 +1,24 @@
+const path = require('path');
+const postcssPresetEnv = require('postcss-preset-env');
+
 module.exports = {
   style: {
     postcss: {
-      loaderOptions: {
-        postcssOptions: {
-          plugins: [
-            require('postcss-import'),
-            require('tailwindcss/nesting'),
-            require('tailwindcss'),
-            require('postcss-preset-env')({
-              features: {
-                'nesting-rules': false // Disable nesting since we're using tailwindcss/nesting
-              }
-            }),
-            require('autoprefixer'),
-          ],
-        },
-      },
-    },
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+        postcssPresetEnv({
+          stage: 1,
+          features: {
+            'nesting-rules': true
+          }
+        })
+      ]
+    }
   },
-} 
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
+}; 
