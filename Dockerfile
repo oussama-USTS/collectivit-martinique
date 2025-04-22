@@ -28,9 +28,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies including dev dependencies and missing packages
+# Install all dependencies
 RUN npm install && \
-    npm install postcss-preset-env @babel/plugin-transform-private-property-in-object @babel/plugin-transform-class-properties @babel/plugin-transform-nullish-coalescing-operator @babel/plugin-transform-numeric-separator @babel/plugin-transform-optional-chaining @babel/plugin-transform-private-methods
+    npm install -D @babel/plugin-transform-private-property-in-object @babel/plugin-transform-class-properties @babel/plugin-transform-nullish-coalescing-operator @babel/plugin-transform-numeric-separator @babel/plugin-transform-optional-chaining @babel/plugin-transform-private-methods
 
 # Copy source code
 COPY . .
