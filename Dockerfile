@@ -35,16 +35,18 @@ RUN npm install && \
 # Copy source code
 COPY . .
 
-# Create images directory and copy grid.svg
+# Create images directory and grid.svg
 RUN mkdir -p public/images && \
     touch public/images/grid.svg
 
-# Build the app with increased memory allocation
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# Build the app
 RUN npm run build
 
 # Production stage
 FROM nginx:alpine
+
+# Install curl for healthcheck
+RUN apk add --no-cache curl
 
 # Copy built assets from build stage
 COPY --from=build /app/build /usr/share/nginx/html
@@ -52,7 +54,7 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Copy nginx configuration
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-# Create directory for static files if it doesn't exist
+# Set up directories and permissions
 RUN mkdir -p /usr/share/nginx/html/static && \
     mkdir -p /var/log/nginx && \
     chown -R nginx:nginx /usr/share/nginx/html && \
