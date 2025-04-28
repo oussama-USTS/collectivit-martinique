@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
             <div className="flex-shrink-0 flex items-center">
               <img
                 className="h-8 w-auto"
-                src="/logo.png"
+                src="/logo-ctm.svg"
                 alt="CTM Logo"
               />
             </div>

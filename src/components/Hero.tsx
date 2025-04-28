@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#003366] via-[#1a4d80] to-[#FF9933]">
+    <div className="relative w-full min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#003366] via-[#1a4d80] to-[#FF9933]">
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -34,119 +34,110 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text content */}
+      <div className="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-0 items-center py-12">
+        <motion.div 
+          className="flex flex-col justify-center items-center lg:items-start text-white space-y-10 h-full"
+          initial="initial"
+          animate="animate"
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-xl text-center lg:text-left"
+            {...fadeInUp}
+          >
+            {language === 'fr' 
+              ? 'Bienvenue à la Collectivité Territoriale de Martinique'
+              : 'Byenvini a Kolektivité Tèritorial Matinik'}
+          </motion.h1>
+          
+          <motion.p 
+            className="text-lg md:text-2xl text-gray-200 text-center lg:text-left"
+            {...fadeInUp}
+            transition={{ delay: 0.2 }}
+          >
+            {language === 'fr'
+              ? 'Découvrez nos services numériques innovants pour une Martinique connectée et moderne'
+              : 'Dékouvè sèvis nimerik nou pou an Matinik konekté ek modèn'}
+          </motion.p>
+
           <motion.div 
-            className="text-white space-y-8"
-            initial="initial"
-            animate="animate"
+            className="flex flex-col sm:flex-row gap-6 items-center lg:items-start"
+            {...fadeInUp}
+            transition={{ delay: 0.4 }}
           >
-            <motion.h1 
-              className="text-5xl md:text-6xl font-bold leading-tight"
-              {...fadeInUp}
+            <Link 
+              to="/services"
+              className="px-10 py-5 bg-[#FF9933] text-white rounded-full text-lg font-bold hover:bg-[#ff8c1a] transform hover:scale-110 transition-all duration-300 shadow-2xl drop-shadow-xl"
             >
-              {language === 'fr' 
-                ? 'Bienvenue à la Collectivité Territoriale de Martinique'
-                : 'Byenvini a Kolektivité Tèritorial Matinik'}
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200"
-              {...fadeInUp}
-              transition={{ delay: 0.2 }}
-            >
-              {language === 'fr'
-                ? 'Découvrez nos services numériques innovants pour une Martinique connectée et moderne'
-                : 'Dékouvè sèvis nimerik nou pou an Matinik konekté ek modèn'}
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-wrap gap-4"
-              {...fadeInUp}
-              transition={{ delay: 0.4 }}
-            >
-              <Link 
-                to="/services"
-                className="px-8 py-4 bg-[#FF9933] text-white rounded-full font-semibold hover:bg-[#ff8c1a] transform hover:scale-105 transition-all duration-300 shadow-lg"
+              {language === 'fr' ? 'Découvrir nos services' : 'Dékouvè sèvis nou'}
+            </Link>
+            <div className="flex space-x-4">
+              <button
+                onClick={() => setLanguage('fr')}
+                className={`px-8 py-4 rounded-full border-2 text-lg font-semibold transition-all duration-300 ${
+                  language === 'fr'
+                    ? 'bg-white text-[#003366] border-white shadow-lg'
+                    : 'bg-transparent text-white border-white/30 hover:border-white'
+                }`}
               >
-                {language === 'fr' ? 'Découvrir nos services' : 'Dékouvè sèvis nou'}
-              </Link>
-              <div className="flex space-x-4">
-                <button
-                  onClick={() => setLanguage('fr')}
-                  className={`px-6 py-3 rounded-full border-2 transition-all duration-300 ${
-                    language === 'fr'
-                      ? 'bg-white text-[#003366] border-white'
-                      : 'bg-transparent text-white border-white/30 hover:border-white'
-                  }`}
-                >
-                  Français
-                </button>
-                <button
-                  onClick={() => setLanguage('cr')}
-                  className={`px-6 py-3 rounded-full border-2 transition-all duration-300 ${
-                    language === 'cr'
-                      ? 'bg-white text-[#003366] border-white'
-                      : 'bg-transparent text-white border-white/30 hover:border-white'
-                  }`}
-                >
-                  Kréyol
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Animated illustration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative w-full aspect-square">
-              <motion.div
-                animate={{ 
-                  rotate: [0, 10, 0, -10, 0],
-                  y: [0, -20, 0, -20, 0]
-                }}
-                transition={{ 
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute inset-0"
+                Français
+              </button>
+              <button
+                onClick={() => setLanguage('cr')}
+                className={`px-8 py-4 rounded-full border-2 text-lg font-semibold transition-all duration-300 ${
+                  language === 'cr'
+                    ? 'bg-white text-[#003366] border-white shadow-lg'
+                    : 'bg-transparent text-white border-white/30 hover:border-white'
+                }`}
               >
-                <img
-                  src="/hero-illustration.svg"
-                  alt="Illustration"
-                  className="w-full h-full object-contain"
-                />
-              </motion.div>
+                Kréyol
+              </button>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Animated illustration */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center justify-center h-full w-full"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-3 bg-white/70 rounded-full mt-2"
-            />
-          </motion.div>
+          <motion.img
+            src="/hero-illustration.svg"
+            alt="Illustration"
+            animate={{ 
+              rotate: [0, 10, 0, -10, 0],
+              y: [0, -20, 0, -20, 0]
+            }}
+            transition={{ 
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="w-full h-full object-contain"
+          />
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1 h-3 bg-white/70 rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
